@@ -1,0 +1,19 @@
+import { Commit, Action, ActionTree } from 'vuex'
+import * as types from './mutation-type'
+import { State, Product, AddToCartPayLoad } from './index'
+
+const addToCart: Action<State, any> = (context: { commit: Commit }, product: Product) => {
+    console.log("call Add to cart")
+    if (product.inventory > 0) {
+    const payload: AddToCartPayLoad = {
+      id: product.id,
+    }
+    context.commit(types.ADD_TO_CART, payload)
+  }
+}
+
+const actions: ActionTree<State, any> = {
+  addToCart,
+}
+
+export default actions
